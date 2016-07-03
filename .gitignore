@@ -1,0 +1,5 @@
+# all files ending in ~
+*~
+# vim swap files
+*.swp
+*.swo

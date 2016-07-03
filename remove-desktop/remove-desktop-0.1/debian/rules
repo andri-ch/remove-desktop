@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+# Uncomment below so that each dh_* cmd outputs what shell cmds is executing
+export DH_OPTIONS=-v
+
+
+#DESTDIR=/opt/remove-desktop
+DESTDIR=/usr/lib/remove-desktop
+
+#%:
+#	dh $@ 
+
+%:
+ifneq ($(shell dh -l | grep -xF translations),)
+	dh $@ --with python2,translations
+else
+	dh $@ --with python2
+	# python2, translations, etc. are addons that you can find with `dh --list`| -l
+endif
+
+
+override_dh_auto_install:
+	dh_auto_install -- --prefix=${DESTDIR} --install-lib=${DESTDIR}/lib
+ --install-scripts=${DESTDIR}/bin --install-data=${DESTDIR}/conf
+
+
+override_dh_python2:
+	dh_python2 ${DESTDIR}
