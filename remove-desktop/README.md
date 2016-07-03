@@ -1,7 +1,8 @@
 ==============
 REMOVE DESKTOP
 ==============
-[LONG DESCRIPTION]
+LONG DESCRIPTION
+------------------
 
 Remove Desktop uninstalls desktops like gnome-desktop, xubuntu-desktop, etc. that leave a lot of dependencies behind when removed with the default package manager.
 
